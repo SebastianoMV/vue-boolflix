@@ -19,5 +19,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+main{
+  background-color: black;
+  height: calc(100vh - 100px);
+}
 
 </style>

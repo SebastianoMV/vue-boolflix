@@ -1,9 +1,9 @@
 <template>
-<div>Titolo: {{title}}
+<div class="card">Titolo: {{ title }}
   <ul>
-    <li>Titolo originale: {{originalTitle}}</li>
-    <li>Lingua: {{language}}</li>
-    <li>Voto: {{vote}}</li>
+    <li>Titolo originale: {{ originalTitle }}</li>
+    <li>Lingua: {{ language }}</li>
+    <li>Voto: {{ vote }}</li>
   </ul>
 </div>
 </template>
@@ -21,5 +21,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.card{
+  min-width: 300px;
+  height: 400px;
+}
 
 </style>

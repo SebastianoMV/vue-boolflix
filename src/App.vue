@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <HeaderComp @functionMovie="functionMovie"/>
+    <HeaderComp @functionMovie="functionMovie" />
 
     <div v-if="errorLoading">
     Inserisci un parametro
     </div>
 
     <div v-else>
-    <MainComp :listMovie="listMovie"/>
+    <MainComp :listMovie="listMovie" />
     </div>
     
   </div>
@@ -30,29 +30,24 @@ export default {
   data(){
     return{
       apiUrl: 'https://api.themoviedb.org/3/search/movie',
-      api_key: '71534d03a5cf96ab640c43e968229013',
-      language: 'it-IT',
-      query:'',
       searchMovie:'',
+      oggetto:{
+        api_key: '71534d03a5cf96ab640c43e968229013',
+        language: 'it-IT',
+        
+      },
       listMovie:[],
-      errorLoading:false,
+      errorLoading:true,
     }
-  },
-
-
-  mounted(){
-    this.getApi();
   },
 
 
   methods: {
     getApi(){
-    axios.get(this.apiUrl, {
-      params: {
-      api_key: '71534d03a5cf96ab640c43e968229013',
-      language: 'it-IT',
-      query: this.searchMovie
-      }
+      this.oggetto.query = this.searchMovie,
+      console.log(this.oggetto);
+      axios.get(this.apiUrl, {
+      params: this.oggetto
     })
    .then(response => {
           this.listMovie = response.data.results;

@@ -3,7 +3,7 @@
     Boolflix
     <div>
       <input type="text" v-model="searchMovie">
-      <button @click="$emit('functionMovie', searchMovie)">cerca</button>
+      <button @click="$emit( 'functionMovie', searchMovie )">cerca</button>
     </div>
   </header>
 </template>
