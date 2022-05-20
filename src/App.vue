@@ -1,7 +1,14 @@
 <template>
   <div id="app">
     <HeaderComp @functionMovie="functionMovie"/>
-    <MainComp/>
+
+    <div v-if="errorLoading">
+    Inserisci un parametro
+    </div>
+
+    <div v-else>
+    <MainComp :listMovie="listMovie"/>
+    </div>
     
   </div>
 </template>
@@ -23,12 +30,12 @@ export default {
   data(){
     return{
       apiUrl: 'https://api.themoviedb.org/3/search/movie',
-      
-        api_key: '71534d03a5cf96ab640c43e968229013',
-        language: 'it-IT',
-        query:'',
-      ciao:'',
+      api_key: '71534d03a5cf96ab640c43e968229013',
+      language: 'it-IT',
+      query:'',
+      searchMovie:'',
       listMovie:[],
+      errorLoading:false,
     }
   },
 
@@ -44,22 +51,25 @@ export default {
       params: {
       api_key: '71534d03a5cf96ab640c43e968229013',
       language: 'it-IT',
-      query: this.ciao
+      query: this.searchMovie
       }
     })
    .then(response => {
           this.listMovie = response.data.results;
           console.log(this.listMovie);
+          this.errorLoading = false;
           
         })
-   .catch(function (error) {
-    console.log(error);
-   })
+   .catch(error => {
+          console.log(error);
+          this.errorLoading = true;
+          
+        })
    },
 
     functionMovie(selectValue){
-      this.ciao = selectValue;
-      console.log(this.ciao);
+      this.searchMovie = selectValue;
+      console.log(this.searchMovie);
       this.getApi()
     },
   }
