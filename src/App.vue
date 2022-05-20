@@ -1,28 +1,71 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HeaderComp @functionMovie="functionMovie"/>
+    <MainComp/>
+    
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HeaderComp from './components/HeaderComp.vue';
+import MainComp from './components/MainComp.vue';
+import axios from 'axios';
+
 
 export default {
   name: 'App',
+
   components: {
-    HelloWorld
+    HeaderComp,
+    MainComp
+  },
+
+  data(){
+    return{
+      apiUrl: 'https://api.themoviedb.org/3/search/movie',
+      
+        api_key: '71534d03a5cf96ab640c43e968229013',
+        language: 'it-IT',
+        query:'',
+      ciao:'',
+      listMovie:[],
+    }
+  },
+
+
+  mounted(){
+    this.getApi();
+  },
+
+
+  methods: {
+    getApi(){
+    axios.get(this.apiUrl, {
+      params: {
+      api_key: '71534d03a5cf96ab640c43e968229013',
+      language: 'it-IT',
+      query: this.ciao
+      }
+    })
+   .then(response => {
+          this.listMovie = response.data.results;
+          console.log(this.listMovie);
+          
+        })
+   .catch(function (error) {
+    console.log(error);
+   })
+   },
+
+    functionMovie(selectValue){
+      this.ciao = selectValue;
+      console.log(this.ciao);
+      this.getApi()
+    },
   }
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import './assets/style/general';
 </style>
