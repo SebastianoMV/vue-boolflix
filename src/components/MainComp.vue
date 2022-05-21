@@ -1,7 +1,9 @@
 <template>
   <main>
+    <h2>Movie</h2>
     <MovieComp :listMovie="listMovie"/>
-    <SeriesComp/>
+    <h2 class="mt-4">Series</h2>
+    <SeriesComp :listMovie="listMovie"/>
     
   </main>
 </template>
@@ -21,7 +23,12 @@ export default {
 <style lang="scss" scoped>
 main{
   background-color: black;
-  height: calc(100vh - 100px);
+  height: calc(100% - 100px);
+  padding-bottom: 20px;
+  h2{
+    margin-left: 100px;
+    color: lightgrey;
+  }
 }
 
 </style>

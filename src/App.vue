@@ -2,8 +2,11 @@
   <div id="app">
     <HeaderComp @functionMovie="functionMovie" />
 
-    <div v-if="errorLoading">
-    Inserisci un parametro
+    <div v-if="errorLoading" class="error-container d-flex justify-content-center pt-5">
+    <h3>Che film vuoi vedere?</h3>
+    </div>
+    <div v-else-if="listMovie.length == 0" class="error-container d-flex justify-content-center pt-5">
+    <h3>Non ci sono risultati</h3>
     </div>
 
     <div v-else>
@@ -65,7 +68,7 @@ export default {
     functionMovie(selectValue){
       this.searchMovie = selectValue;
       console.log(this.searchMovie);
-      this.getApi()
+      this.getApi();
     },
   }
 }
@@ -73,4 +76,10 @@ export default {
 
 <style lang="scss">
 @import './assets/style/general';
+@import './assets/style/var';
+.error-container{
+  height: calc(100vh - 100px);
+  background-color: black;
+  color: white;
+}
 </style>

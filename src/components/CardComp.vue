@@ -1,5 +1,5 @@
 <template>
-<div class="card">
+<div class="card overflow-hidden">
 <!-- <img :src="`${urlImg}${image}`" alt="">
   <ul>
     <li>Titolo originale: {{ originalTitle }}</li>
@@ -9,14 +9,15 @@
    <div class="smv-card">
     <div class="flip-card-inner">
       <div class="flip-card-front">
-        <img :src="`${urlImg}${image}`" alt="">
+        <img v-if="image == null" src="https://www.frosinonecalcio.com/wp-content/uploads/2021/09/default-placeholder.png" alt="">
+        <img v-else :src="`${urlImg}${image}`" alt="">
         
       </div>
       <div class="flip-card-back">
         <h4>{{ title }}</h4>
         <p>Titolo originale: {{ originalTitle }}</p>
         <p>Lingua: {{ language }}</p>
-        <p>Voto: {{ vote }}</p>
+        <p>&starf;{{ vote }}</p>
       </div>
     </div>
   </div> 
@@ -42,12 +43,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/style/var';
+
 .card{
   min-width: 250px;
   max-height: 100%;
   margin: 5px;
   border: none;
   background-color: black;
+  
 }
 .smv-card{
   width: 100%;
@@ -56,12 +60,6 @@ export default {
   img{
     width: 100%;
     height: 100%;
-  }
-  h4{
-    color: white;
-  }
-  p{
-    color: gray;
   }
 }
 // Flip
@@ -95,7 +93,7 @@ export default {
   transform: rotateY(180deg);
   background-color: black;
   h4{
-    color: white;
+    color: $primary-color;
     text-transform: uppercase;
   }
    p{
