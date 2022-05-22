@@ -1,9 +1,9 @@
 <template>
   <main>
     <h2>Movie</h2>
-    <MovieComp :listMovie="listMovie"/>
+    <MovieComp v-if="!onlyTV==true" :listMovie="listMovie"/>
     <h2 class="mt-4">Series</h2>
-    <SeriesComp :listMovie="listMovie"/>
+    <SeriesComp v-if="!onlyMovie==true" :listMovie="listMovie"/>
     
   </main>
 </template>
@@ -16,6 +16,30 @@ export default {
     components: { MovieComp, SeriesComp },
     props:{
       listMovie : Array,
+    },
+    data(){
+      return{
+        onlyTV: false,
+        onlyMovie: false,
+      }
+    },
+    methods: {
+      movieSelect(){
+      this.onlyMovie = true;
+      console.log('movie' + this.onlyMovie);
+      if(this.onlyTV == true){
+        this.onlyTV = false;
+        console.log('tv' + this.onlyTV);
+      }
+    },
+    tvSelect(){
+      this.onlyTV = true;
+      console.log('tv' + this.onlyTV);
+      if(this.onlyMovie == true){
+        this.onlyMovie = false;
+        console.log('movie' + this.onlyMovie);
+      }
+    },
     },
 }
 </script>

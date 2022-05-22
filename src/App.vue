@@ -33,6 +33,7 @@ export default {
   data(){
     return{
       apiUrl: 'https://api.themoviedb.org/3/search/movie',
+      apiUrlTV: 'https://api.themoviedb.org/3/search/TV',
       searchMovie:'',
       oggetto:{
         api_key: '71534d03a5cf96ab640c43e968229013',
@@ -77,6 +78,10 @@ export default {
 <style lang="scss">
 @import './assets/style/general';
 @import './assets/style/var';
+#app{
+  height: 100vh;
+  background-color: black;
+}
 .error-container{
   height: calc(100vh - 100px);
   background-color: black;

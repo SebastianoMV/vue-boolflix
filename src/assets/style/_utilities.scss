@@ -1,0 +1,16 @@
+
+.container-fluid{
+  width: 90%;
+  height: 350px;
+}
+::-webkit-scrollbar{
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 20px;
+}
+::-webkit-scrollbar-thumb {
+  background: $primary-color;
+  border-radius: 20px;
+}

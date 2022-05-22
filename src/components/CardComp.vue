@@ -9,7 +9,7 @@
    <div class="smv-card">
     <div class="flip-card-inner">
       <div class="flip-card-front">
-        <img v-if="image == null" src="https://www.frosinonecalcio.com/wp-content/uploads/2021/09/default-placeholder.png" alt="">
+        <img v-if="image == null" class="img-null" src="https://www.frosinonecalcio.com/wp-content/uploads/2021/09/default-placeholder.png" alt="">
         <img v-else :src="`${urlImg}${image}`" alt="">
         
       </div>
@@ -83,7 +83,7 @@ export default {
 .flip-card-front, .flip-card-back {
   position: absolute;
   width: 100%;
-  
+  height: 100%;
   backface-visibility: hidden;
   background-color: black;
  
