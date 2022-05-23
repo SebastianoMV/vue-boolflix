@@ -10,7 +10,7 @@
     </div>
 
     <div v-else>
-    <MainComp :listMovie="listMovie" />
+    <MainComp :listMovie="listMovie" :listTV="listTV"/>
     </div>
     
   </div>
@@ -33,14 +33,15 @@ export default {
   data(){
     return{
       apiUrl: 'https://api.themoviedb.org/3/search/movie',
-      apiUrlTV: 'https://api.themoviedb.org/3/search/TV',
+      apiUrlTV: 'https://api.themoviedb.org/3/search/tv',
       searchMovie:'',
       oggetto:{
         api_key: '71534d03a5cf96ab640c43e968229013',
         language: 'it-IT',
-        
+        query: '',
       },
       listMovie:[],
+      listTV:[],
       errorLoading:true,
     }
   },
@@ -65,11 +66,30 @@ export default {
           
         })
    },
+   getApiTV(){
+      this.oggetto.query = this.searchMovie,
+      console.log(this.oggetto);
+      axios.get(this.apiUrlTV, {
+      params: this.oggetto
+    })
+   .then(response => {
+          this.listTV = response.data.results;
+          console.log(this.listTV);
+          this.errorLoading = false;
+          
+        })
+   .catch(error => {
+          console.log(error);
+          this.errorLoading = true;
+          
+        })
+   },
 
     functionMovie(selectValue){
       this.searchMovie = selectValue;
       console.log(this.searchMovie);
       this.getApi();
+      this.getApiTV();
     },
   }
 }

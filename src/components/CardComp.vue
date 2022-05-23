@@ -1,5 +1,5 @@
 <template>
-<div class="card overflow-hidden">
+<div class="card overflow-hidden ">
 <!-- <img :src="`${urlImg}${image}`" alt="">
   <ul>
     <li>Titolo originale: {{ originalTitle }}</li>
@@ -16,8 +16,12 @@
       <div class="flip-card-back">
         <h4>{{ title }}</h4>
         <p>Titolo originale: {{ originalTitle }}</p>
-        <p>Lingua: {{ language }}</p>
+        <div v-if="language == 'en'"><img src="../assets/img/en.svg" alt=""></div>
+        <div v-else-if="language == 'it'"><img src="../assets/img/it.svg" alt=""></div>
+        <p v-else>Lingua: {{language}}</p>
         <p>&starf;{{ vote }}</p>
+        <p class="overview">{{overview}}</p>
+        
       </div>
     </div>
   </div> 
@@ -29,7 +33,7 @@ export default {
   name: 'CardComp',
   data(){
     return{
-      urlImg: 'https://image.tmdb.org/t/p/w500',
+      urlImg: 'https://image.tmdb.org/t/p/w342',
     }
   },
   props:{
@@ -38,6 +42,7 @@ export default {
       language: String,
       vote: Number,
       image: String,
+      overview: String,
     },
 }
 </script>
@@ -47,7 +52,7 @@ export default {
 
 .card{
   min-width: 250px;
-  max-height: 100%;
+  max-height: 350px;
   margin: 5px;
   border: none;
   background-color: black;
@@ -98,8 +103,12 @@ export default {
   }
    p{
     color: white;
-    font-size: 20px;
+    font-size: 12px;
     font-weight: 500;
+    overflow-y: auto;
+  }
+  img{
+    width: 20px;
   }
 }
 </style>

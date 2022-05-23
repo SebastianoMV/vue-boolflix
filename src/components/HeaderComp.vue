@@ -1,7 +1,7 @@
 <template>
   <header class="d-flex justify-content-between align-items-center">
     <div>
-      <img src="https://boolfix-jdonzelli.netlify.app/img/logo.png" alt="">
+      <img src="https://boolfix-jdonzelli.netlify.app/img/logo.png" @click="movieSelect()" alt="">
       <button class="btn-movie-tv m-3" @click="movieSelect()">Movie</button>
       <button class="btn-movie-tv m-1" @click="tvSelect()">TV</button>
     </div>
@@ -55,6 +55,9 @@ header{
   height: 100px;
   background-color: black;
   color: white;
+  img{
+    cursor: pointer;
+  }
   .btn{
     background-color: $primary-color;  }
   .btn-movie-tv{

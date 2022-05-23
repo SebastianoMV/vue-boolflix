@@ -1,7 +1,10 @@
 <template>
+<div>
+  <h2>Movie</h2>
   <div class="container-fluid d-flex overflow-auto p-0">
-    <CardComp v-for="( movie, index ) in listMovie" :key="index" :title="movie.title" :originalTitle="movie.original_title" :language="movie.original_language" :vote="movie.vote_average" :image='movie.poster_path'/>
+    <CardComp v-for="movie in listMovie" :key="movie.id" :title="movie.title" :originalTitle="movie.original_title" :language="movie.original_language" :vote="movie.vote_average" :image='movie.poster_path' :overview="movie.overview"/>
     
+  </div>
   </div>
 </template>
 
@@ -20,6 +23,10 @@ export default {
 
 <style lang="scss" scoped>
 @import '../assets/style/var';
-@import '../assets/style/utilities'
+@import '../assets/style/utilities';
+h2{
+    margin-left: 100px;
+    color: lightgrey;
+  }
 
 </style>
