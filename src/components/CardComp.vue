@@ -19,7 +19,12 @@
         <div v-if="language == 'en'"><img src="../assets/img/en.svg" alt=""></div>
         <div v-else-if="language == 'it'"><img src="../assets/img/it.svg" alt=""></div>
         <p v-else>Lingua: {{language}}</p>
-        <p>&starf;{{ vote }}</p>
+        <div>
+          <span v-for="n in 5" :key="n">
+          <span v-if="voto >= n">&starf;</span>
+          <span v-else>&star;</span>
+          </span>
+        </div>
         <p class="overview">{{overview}}</p>
         
       </div>
@@ -34,6 +39,7 @@ export default {
   data(){
     return{
       urlImg: 'https://image.tmdb.org/t/p/w342',
+      voto: Math.round(this.vote / 2),
     }
   },
   props:{
@@ -109,6 +115,10 @@ export default {
   }
   img{
     width: 20px;
+  }
+  span{
+    color: gold;
+    font-size: 20px;
   }
 }
 </style>
