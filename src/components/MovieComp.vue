@@ -24,9 +24,6 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/style/var';
 @import '../assets/style/utilities';
-h2{
-    margin-left: 100px;
-    color: lightgrey;
-  }
+
 
 </style>
