@@ -49,6 +49,8 @@ export default {
 
 
   methods: {
+
+    // CHIAMATA API PER LISTA MOVIE
     getApi(){
       this.oggetto.query = this.searchMovie,
       console.log(this.oggetto);
@@ -67,6 +69,8 @@ export default {
           
         })
    },
+
+  //  CHIAMATA API PER LISTA TV
    getApiTV(){
       this.oggetto.query = this.searchMovie,
       console.log(this.oggetto);
@@ -85,14 +89,16 @@ export default {
           
         })
    },
-
+   
     functionMovie(selectValue){
       this.searchMovie = selectValue;
       console.log(this.searchMovie);
       this.getApi();
       this.getApiTV();
     },
+    
 
+    // FUNZIONI SELEZIONE FILTRO EMIT
     movieSelect(value){
       this.filterType = value;
       console.log('movie' + this.filterType);

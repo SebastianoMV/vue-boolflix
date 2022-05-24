@@ -1,7 +1,10 @@
 <template>
   <main>
+
+    <!-- MOVIE COMP APPARE SE NON é SELEZIONATO IL FILTRO 'tv' E SE L'ARRAY LISTMOVIE é PIENO -->
     <MovieComp v-if="filterType != 'tv' && listMovie.length > 0" :listMovie="listMovie"/>
     
+    <!-- SERIES COMP APPARE SE NON é SELEZIONATO IL FILTRO 'movie' E SE L'ARRAY LISTTV é PIENO -->
     <SeriesComp v-if="filterType != 'movie' && listTV.length > 0" :listTV="listTV"/>
     
   </main>

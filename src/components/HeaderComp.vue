@@ -26,6 +26,8 @@ export default {
       this.$emit( 'functionMovie', this.searchMovie );
       this.searchMovie= '';
     },
+
+    // FUNZIONI SELEZIONE FILTRO EMIT
     movieSelect(){
       this.filterType = 'movie'
       this.$emit( 'movieSelect', this.filterType )
