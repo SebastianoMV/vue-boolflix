@@ -15,13 +15,25 @@
         <p v-else>Lingua: {{language}}</p>
         <div>
           <span v-for="n in 5" :key="n">
-          <span v-if="voto >= n">
-          <i class="fa-solid fa-star"></i>
-          </span>
-          <span v-else><i class="fa-regular fa-star"></i></span>
+           <span v-if="voto >= n">
+            <i class="fa-solid fa-star"></i>
+           </span>
+           <span v-else>
+            <i class="fa-regular fa-star"></i>
+           </span>
           </span>
         </div>
-        <p class="overview">{{overview}}</p>
+        <div v-if="details == true">
+          <div> 
+            <span class="red-text">Generi:</span>
+            <span v-for="(genre, index) in movieGenre" :key="index">{{genre.name}} </span> 
+          </div>
+          <div> 
+            <span class="red-text">Attori:</span>
+            <span v-for="(cast, index) in movieCast" :key="index">{{cast.name}} </span> 
+          </div>
+        </div>
+        <p v-else class="overview">{{overview}}</p>
         
       </div>
     </div>
@@ -45,6 +57,8 @@ export default {
         language: 'it-IT',
       },
       movieGenre:[],
+      movieCast:[],
+      details: false,
     }
   },
   props:{
@@ -63,8 +77,23 @@ export default {
     params: this.apiObject
     })
     .then(response => {
-        console.log(response.data.genres);
         this.movieGenre = response.data.genres;
+        console.log(this.movieGenre);
+    })
+    .catch(error => {
+        console.log(error);    
+    })
+    },
+
+    getApiCast(){
+    axios.get(this.apiMovieCast, {
+    params: this.apiObject
+    })
+    .then(response => {
+      console.log(response);
+        this.movieCast = response.data.cast;
+        this.movieCast.length = 5;
+        console.log(this.movieCast);
     })
     .catch(error => {
         console.log(error);    
@@ -72,8 +101,10 @@ export default {
     },
     
     movieDetails(){
+      this.details = !this.details;
       console.log(this.id);
-      this.getApiId()
+      this.getApiId();
+      this.getApiCast()
     }
 
 
@@ -138,16 +169,21 @@ export default {
     color: $primary-color;
     text-transform: uppercase;
   }
-   p{
+   p, span{
     color: white;
     font-size: 12px;
     font-weight: 500;
   }
- 
+  span{
+    font-size: 15px;
+    &.red-text{
+      color: $primary-color;
+    }
+  }
   img{
     width: 20px;
   }
-  span{
+  i{
     color: gold;
     font-size: 20px;
   }
