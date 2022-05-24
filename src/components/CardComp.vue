@@ -15,8 +15,10 @@
         <p v-else>Lingua: {{language}}</p>
         <div>
           <span v-for="n in 5" :key="n">
-          <span v-if="voto >= n">&starf;</span>
-          <span v-else>&star;</span>
+          <span v-if="voto >= n">
+          <i class="fa-solid fa-star"></i>
+          </span>
+          <span v-else><i class="fa-regular fa-star"></i></span>
           </span>
         </div>
         <p class="overview">{{overview}}</p>
@@ -33,7 +35,7 @@ export default {
   data(){
     return{
       urlImg: 'https://image.tmdb.org/t/p/w342',
-      voto: Math.round(this.vote / 2),
+      voto: Math.round( this.vote / 2 ),
     }
   },
   props:{
