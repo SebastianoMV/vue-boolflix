@@ -7,7 +7,7 @@
         <img v-else :src="`${urlImg}${image}`" alt="">
         
       </div>
-      <div class="flip-card-back">
+      <div class="flip-card-back" @click="movieDetails()">
         <h4>{{ title }}</h4>
         <p>Titolo originale: {{ originalTitle }}</p>
         <div v-if="language == 'en'"><img src="../assets/img/en.svg" alt=""></div>
@@ -30,12 +30,21 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'CardComp',
   data(){
     return{
       urlImg: 'https://image.tmdb.org/t/p/w342',
       voto: Math.round( this.vote / 2 ),
+      apiMovieGenre: `https://api.themoviedb.org/3/movie/${this.id}?`,
+      apiMovieCast: `https://api.themoviedb.org/3/movie/${this.id}/credits?`,
+      apiObject:{
+        api_key: '71534d03a5cf96ab640c43e968229013',
+        language: 'it-IT',
+      },
+      movieGenre:[],
     }
   },
   props:{
@@ -45,7 +54,30 @@ export default {
       vote: Number,
       image: String,
       overview: String,
+      id: Number,
     },
+
+  methods:{
+    getApiId(){
+    axios.get(this.apiMovieGenre, {
+    params: this.apiObject
+    })
+    .then(response => {
+        console.log(response.data.genres);
+        this.movieGenre = response.data.genres;
+    })
+    .catch(error => {
+        console.log(error);    
+    })
+    },
+    
+    movieDetails(){
+      console.log(this.id);
+      this.getApiId()
+    }
+
+
+  }
 }
 </script>
 
@@ -107,11 +139,9 @@ export default {
     text-transform: uppercase;
   }
    p{
-    
     color: white;
     font-size: 12px;
     font-weight: 500;
-    
   }
  
   img{

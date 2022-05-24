@@ -44,6 +44,9 @@ export default {
       listTV:[],
       errorLoading:true,
       filterType:'',
+
+      //MILESTONE 5
+     
     }
   },
 
@@ -59,14 +62,12 @@ export default {
     })
    .then(response => {
           this.listMovie = response.data.results;
-          console.log(this.listMovie);
           this.errorLoading = false;
-          
+          console.log(this.listMovie);
         })
    .catch(error => {
           console.log(error);
-          this.errorLoading = true;
-          
+          this.errorLoading = true;      
         })
    },
 
@@ -95,6 +96,7 @@ export default {
       console.log(this.searchMovie);
       this.getApi();
       this.getApiTV();
+     
     },
     
 
@@ -113,6 +115,9 @@ export default {
       this.filterType = value;
       console.log('all' + this.filterType);
     },
+
+    //MILESTONE 5 BONUS 
+
   }
 }
 </script>

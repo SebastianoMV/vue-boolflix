@@ -4,7 +4,7 @@
   <div class="container-fluid d-flex overflow-auto p-0">
 
     <!-- PASSO A CARD COMP GLI ELEMENTI NECESSARI PER FACILITARE LE DIFFERENZE FRA MOVIE E TV E PER NON PASSARE CAMPI DI CUI NON HO EVENTUALMENTE BISOGNO  -->
-    <CardComp v-for="movie in listMovie" :key="movie.id" :title="movie.title" :originalTitle="movie.original_title" :language="movie.original_language" :vote="movie.vote_average" :image='movie.poster_path' :overview="movie.overview"/>
+    <CardComp v-for="movie in listMovie" :key="movie.id" :title="movie.title" :originalTitle="movie.original_title" :language="movie.original_language" :vote="movie.vote_average" :image='movie.poster_path' :overview="movie.overview" :id="movie.id"/>
     
   </div>
   </div>
