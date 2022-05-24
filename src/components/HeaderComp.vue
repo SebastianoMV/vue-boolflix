@@ -1,7 +1,7 @@
 <template>
   <header class="d-flex justify-content-between align-items-center">
     <div>
-      <img src="https://boolfix-jdonzelli.netlify.app/img/logo.png" @click="movieSelect()" alt="">
+      <img src="https://boolfix-jdonzelli.netlify.app/img/logo.png" @click="allSelect()" alt="">
       <button class="btn-movie-tv m-3" @click="movieSelect()">Movie</button>
       <button class="btn-movie-tv m-1" @click="tvSelect()">TV</button>
     </div>
@@ -18,8 +18,7 @@ export default {
   data() {
     return {
       searchMovie:'',
-      onlyTV: false,
-      onlyMovie: false,
+      filterType:'',
     }
   },
   methods: {
@@ -28,21 +27,18 @@ export default {
       this.searchMovie= '';
     },
     movieSelect(){
-      this.onlyMovie = true;
-      console.log('movie' + this.onlyMovie);
-      if(this.onlyTV == true){
-        this.onlyTV = false;
-        console.log('tv' + this.onlyTV);
-      }
+      this.filterType = 'movie'
+      this.$emit( 'movieSelect', this.filterType )
     },
     tvSelect(){
-      this.onlyTV = true;
-      console.log('tv' + this.onlyTV);
-      if(this.onlyMovie == true){
-        this.onlyMovie = false;
-        console.log('movie' + this.onlyMovie);
-      }
+      this.filterType = 'tv'
+      this.$emit( 'tvSelect', this.filterType )
     },
+    allSelect(){
+      this.filterType = 'all'
+      this.$emit( 'allSelect', this.filterType )
+    },
+    
 
   },
 }
@@ -55,6 +51,11 @@ header{
   height: 100px;
   background-color: black;
   color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
   img{
     cursor: pointer;
   }

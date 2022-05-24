@@ -1,8 +1,8 @@
 <template>
   <main>
-    <MovieComp v-if="!onlyTV==true" :listMovie="listMovie"/>
+    <MovieComp v-if="filterType != 'tv' && listMovie.length > 0" :listMovie="listMovie"/>
     
-    <SeriesComp v-if="!onlyMovie==true" :listTV="listTV"/>
+    <SeriesComp v-if="filterType != 'movie' && listTV.length > 0" :listTV="listTV"/>
     
   </main>
 </template>
@@ -16,31 +16,15 @@ export default {
     props:{
       listMovie : Array,
       listTV : Array,
+      filterType : String,
     },
     data(){
       return{
-        onlyTV: false,
-        onlyMovie: false,
+        
       }
     },
     methods: {
-      movieSelect(){
-      this.onlyMovie = true;
-      console.log('movie' + this.onlyMovie);
-      if(this.onlyTV == true){
-        this.onlyTV = false;
-        console.log('tv' + this.onlyTV);
-        console.log(this.listTV);
-      }
-    },
-    tvSelect(){
-      this.onlyTV = true;
-      console.log('tv' + this.onlyTV);
-      if(this.onlyMovie == true){
-        this.onlyMovie = false;
-        console.log('movie' + this.onlyMovie);
-      }
-    },
+      
     },
 }
 </script>
@@ -50,7 +34,7 @@ main{
   background-color: black;
   height: calc(100% - 100px);
   padding-bottom: 20px;
-  
+  padding-top: 100px;
 }
 
 </style>

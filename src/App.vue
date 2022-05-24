@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <HeaderComp @functionMovie="functionMovie" />
+    <HeaderComp @functionMovie="functionMovie" @movieSelect="movieSelect" @tvSelect="tvSelect" @allSelect="allSelect"/>
 
     <div v-if="errorLoading" class="error-container d-flex justify-content-center pt-5">
     <h3>Che film vuoi vedere?</h3>
@@ -10,7 +10,7 @@
     </div>
 
     <div v-else>
-    <MainComp :listMovie="listMovie" :listTV="listTV"/>
+    <MainComp :listMovie="listMovie" :listTV="listTV" :filterType="filterType"/>
     </div>
     
   </div>
@@ -43,6 +43,7 @@ export default {
       listMovie:[],
       listTV:[],
       errorLoading:true,
+      filterType:'',
     }
   },
 
@@ -91,6 +92,21 @@ export default {
       this.getApi();
       this.getApiTV();
     },
+
+    movieSelect(value){
+      this.filterType = value;
+      console.log('movie' + this.filterType);
+    },
+
+    tvSelect(value){
+      this.filterType = value;
+      console.log('tv' + this.filterType);
+    },
+
+    allSelect(value){
+      this.filterType = value;
+      console.log('all' + this.filterType);
+    },
   }
 }
 </script>
@@ -106,5 +122,8 @@ export default {
   height: calc(100vh - 100px);
   background-color: black;
   color: white;
+}
+h3{
+  padding-top: 100px;
 }
 </style>

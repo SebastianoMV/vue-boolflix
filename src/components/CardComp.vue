@@ -1,11 +1,5 @@
 <template>
-<div class="card overflow-hidden ">
-<!-- <img :src="`${urlImg}${image}`" alt="">
-  <ul>
-    <li>Titolo originale: {{ originalTitle }}</li>
-    <li>Lingua: {{ language }}</li>
-    <li>Voto: {{ vote }}</li>
-  </ul> -->
+<div class="card overflow-hidden">
    <div class="smv-card">
     <div class="flip-card-inner">
       <div class="flip-card-front">
@@ -78,8 +72,7 @@ export default {
 .flip-card-inner {
   position: relative;
   min-width: 100%;
-  height: 100%;
-  text-align: center;
+  height: 350px;
   transition: transform 0.6s;
   transform-style: preserve-3d;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -89,12 +82,16 @@ export default {
 .smv-card:hover .flip-card-inner {
   transform: rotateY(180deg);
   background-color: black;
+   .overview{
+    height: 100px;
+    overflow-y: auto;
+  }
 }
 
 .flip-card-front, .flip-card-back {
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 350px;
   backface-visibility: hidden;
   background-color: black;
  
@@ -108,11 +105,13 @@ export default {
     text-transform: uppercase;
   }
    p{
+    
     color: white;
     font-size: 12px;
     font-weight: 500;
-    overflow-y: auto;
+    
   }
+ 
   img{
     width: 20px;
   }
