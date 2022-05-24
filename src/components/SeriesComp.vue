@@ -2,7 +2,7 @@
 <div>
   <h2 class="mt-4">Series</h2>
   <div class="container-fluid d-flex overflow-auto p-0">
-    <CardComp v-for=" movie in listTV" :key="movie.id" :title="movie.name" :originalTitle="movie.name" :language="movie.original_language" :vote="movie.vote_average" :image='movie.poster_path' :overview="movie.overview" :id="movie.id"/>
+    <CardComp v-for=" movie in listTV" :key="movie.id" :title="movie.name" :originalTitle="movie.name" :language="movie.original_language" :vote="movie.vote_average" :image='movie.poster_path' :overview="movie.overview" :id="movie.id" keyMovieTV="tv"/>
     
   </div>
 </div>

@@ -50,8 +50,8 @@ export default {
     return{
       urlImg: 'https://image.tmdb.org/t/p/w342',
       voto: Math.round( this.vote / 2 ),
-      apiMovieGenre: `https://api.themoviedb.org/3/movie/${this.id}?`,
-      apiMovieCast: `https://api.themoviedb.org/3/movie/${this.id}/credits?`,
+      apiMovieGenre: `https://api.themoviedb.org/3/${this.keyMovieTV}/${this.id}?`,
+      apiMovieCast: `https://api.themoviedb.org/3/${this.keyMovieTV}/${this.id}/credits?`,
       apiObject:{
         api_key: '71534d03a5cf96ab640c43e968229013',
         language: 'it-IT',
@@ -59,6 +59,7 @@ export default {
       movieGenre:[],
       movieCast:[],
       details: false,
+      
     }
   },
   props:{
@@ -69,6 +70,8 @@ export default {
       image: String,
       overview: String,
       id: Number,
+      keyMovieTV: String,
+      
     },
 
   methods:{
